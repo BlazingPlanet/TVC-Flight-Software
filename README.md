@@ -25,7 +25,7 @@ boost, deployed under parachute at apogee, and was recovered. See
 | Estes F15-0 | Motor (plugged, no ejection charge) |
 
 Pin assignments, servo calibration, and clock configuration are in
-[CALIBRATION.md](CALIBRATION.md).
+[CALIBRATION.md](TVC_Flight_Software/CALIBRATION.md).
 
 ---
 
@@ -46,7 +46,8 @@ barometer. Drives burnout and apogee detection.
 **Control.** PD on attitude error, gains derived from a measured plant model —
 moment of inertia from a bifilar pendulum test, lever arm and CG measured
 directly. Commands are clamped to ±6° of gimbal and slew-limited to 25 µs of
-pulse change per tick. Active during boost only. See [TUNING.md](TUNING.md).
+pulse change per tick. Active during boost only. See
+[TUNING.md](TVC_Flight_Software/TUNING.md).
 
 **State machine.** DISARMED → PAD → BOOST → COAST → DESCENT, each transition
 debounced 100 ms. Arming requires 20 s of stillness and near-vertical attitude,
@@ -71,10 +72,11 @@ half-record that's hard to detect.
     TVC_Flight_Software/     firmware -- CubeMX project, CMake build
       Core/Src/main.c        everything lives here
       tools/                 Python log decoder
-    CALIBRATION.md           pins, servo geometry, slew rate, clock tree
-    TUNING.md                plant model, moment of inertia, gain derivation
-    PREFLIGHT.md             pre-flight checklist and arming procedure
-    flight_1/                log, plots, and post-flight notes
+      CALIBRATION.md         pins, servo geometry, slew rate, clock tree
+      TUNING.md              plant model, moment of inertia, gain derivation
+      PREFLIGHT.md           pre-flight checklist and arming procedure
+    flight_1/                log, replay, and post-flight analysis
+    README.md
 
 ---
 
@@ -83,8 +85,8 @@ half-record that's hard to detect.
 Requires STM32CubeMX, the ARM GCC toolchain, and CMake.
 
     cd TVC_Flight_Software
-    cmake -B build -G Ninja
-    cmake --build build
+    cmake --preset Debug
+    cmake --build build/Debug
 
 Flash the resulting `.elf` with STM32CubeProgrammer or the CubeIDE extension.
 
@@ -92,7 +94,7 @@ Flash the resulting `.elf` with STM32CubeProgrammer or the CubeIDE extension.
 `SLEW_TEST`, `DRIFT_TEST`, `SIM_MODE`, `EJECTION_BENCH_TEST`. Several of them
 fail silently. `SLEW_TEST` in particular enters an infinite servo-sweep loop
 before the flight loop is ever reached, so the board looks alive and does
-nothing. [PREFLIGHT.md](PREFLIGHT.md) covers this properly.
+nothing. [PREFLIGHT.md](TVC_Flight_Software/PREFLIGHT.md) covers this properly.
 
 ---
 
@@ -103,13 +105,14 @@ Capture the flash dump over serial, then:
     cd TVC_Flight_Software/tools
     python decode_flight_log.py capture.log --replay
 
-Full instructions in [tools/README.md](TVC_Flight_Software/tools/README.md).
+Full instructions in
+[tools/README.md](TVC_Flight_Software/tools/README.md).
 
 ---
 
-## Current status
+## Honest status
 
-On its first flight, the vehicle flew, stabilised, deployed, and was recovered. That is not the same
+The vehicle flew, stabilised, deployed, and was recovered. That is not the same
 as the control loop being validated.
 
 Flight 1 left a crooked rail roughly 10° off vertical, which saturated the
@@ -128,8 +131,6 @@ and yaw channels through actuator lag — at 500 °/s the body rotates 25° duri
 the servo's ~50 ms transit, so corrections land rotated from where they were
 computed. Traced to loose, closely-spaced rail buttons on a finless vehicle with
 no aerodynamic roll damping.
-
-Biggest need for flight 2 is an upgraded launch pad that starts the vehicle in stable config
 
 ---
 

@@ -63,7 +63,7 @@ long pad hold. Raise `--decimate` for a faster, choppier render.
   a servo calibration constant is wrong
 - OVERRUN flags indicate the loop missed its deadline
 - NO_TRUST should be set for essentially the whole burn. That is correct
-  behavior, not a fault -- see the boost-phase drift section in TUNING.md
+  behavior, not a fault -- see the boost-phase drift section in ../TUNING.md
 - EJECT_BAK set means apogee detection failed and the backup timer fired.
   Investigate before flying again
 - Compare cmd_y/cmd_z against pulse_y/pulse_z. Sustained divergence through

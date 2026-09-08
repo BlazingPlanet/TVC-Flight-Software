@@ -1,0 +1,67 @@
+# --- Build output ---
+build/
+Debug/
+Release/
+cmake-build-*/
+*.o
+*.d
+*.su
+*.elf
+*.bin
+*.hex
+*.map
+*.list
+*.lst
+
+# --- CMake ---
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+compile_commands.json
+.ninja_deps
+.ninja_log
+build.ninja
+
+# --- STM32CubeMX / CubeIDE ---
+# The .ioc IS tracked -- it is the source of truth for pin and clock config,
+# and regenerating from it is how the project is reproduced. Everything below
+# is generated noise around it.
+.mxproject
+*.launch
+.settings/
+.cproject
+.project
+
+# --- Editors ---
+.vscode/
+.idea/
+*.swp
+*~
+
+# --- Python tools ---
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# --- Flight data ---
+# Raw PuTTY captures are large and get committed deliberately per flight,
+# under flight_N/. Stray captures in the working tree are not wanted.
+/capture.log
+/*.log
+tools/*.log
+tools/*.csv
+
+# --- Generated plots and replays ---
+# Commit the ones you mean to keep under flight_N/, not whatever is lying
+# around after an analysis session.
+tools/*.png
+tools/*.gif
+tools/*.mp4
+tools/*.pickle
+
+# --- OS ---
+Thumbs.db
+.DS_Store
+desktop.ini

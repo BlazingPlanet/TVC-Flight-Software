@@ -107,9 +107,9 @@ Full instructions in [tools/README.md](TVC_Flight_Software/tools/README.md).
 
 ---
 
-## Honest status
+## Current status
 
-The vehicle flew, stabilised, deployed, and was recovered. That is not the same
+On its first flight, the vehicle flew, stabilised, deployed, and was recovered. That is not the same
 as the control loop being validated.
 
 Flight 1 left a crooked rail roughly 10° off vertical, which saturated the
@@ -128,6 +128,8 @@ and yaw channels through actuator lag — at 500 °/s the body rotates 25° duri
 the servo's ~50 ms transit, so corrections land rotated from where they were
 computed. Traced to loose, closely-spaced rail buttons on a finless vehicle with
 no aerodynamic roll damping.
+
+Biggest need for flight 2 is an upgraded launch pad that starts the vehicle in stable config
 
 ---
 

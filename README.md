@@ -29,7 +29,7 @@ Pin assignments, servo calibration, and clock configuration are in
 
 ---
 
-## What it does
+## Features
 
 **Attitude estimation.** A Mahony complementary filter fuses gyro and
 accelerometer into a quaternion. The accelerometer's weight fades to zero when
@@ -67,7 +67,7 @@ half-record that's hard to detect.
 
 ---
 
-## Repository layout
+## Repository Layout
 
     TVC_Flight_Software/     firmware -- CubeMX project, CMake build
       Core/Src/main.c        everything lives here
@@ -110,12 +110,12 @@ Full instructions in
 
 ---
 
-## Honest status
+## Status
 
-The vehicle flew, stabilised, deployed, and was recovered. That is not the same
-as the control loop being validated.
+The vehicle flew, stabilized, deployed, and was recovered, but the control
+loop is not fully validated.
 
-Flight 1 left a crooked rail roughly 10° off vertical, which saturated the
+Flight 1 left a crooked rail roughly 7-10° off vertical, which saturated the
 controller before the rocket cleared the rod. The gains clamp at 4° of attitude
 error, so the loop spent ~80% of the burn pinned at full deflection, running
 bang-bang rather than PD. It held the vehicle — tilt stayed bounded and it never

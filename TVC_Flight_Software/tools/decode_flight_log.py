@@ -288,7 +288,7 @@ def to_arrays(flight):
     return compute_derived(data)
 
 
-def trim_flight(data, pre_boost=10.0, post_descent=10.0):
+def trim_flight(data, pre_boost=5.0, post_descent=5.0):
     """Slice the log down to the window worth looking at.
 
     Logging starts at PAD, so a log is mostly pad time -- a five minute hold
@@ -775,10 +775,10 @@ def main():
                    help="replay frame skip (default 10 = ~20 fps)")
     p.add_argument("--no-trim", action="store_true",
                    help="plot the whole log instead of the boost window")
-    p.add_argument("--pre-boost", type=float, default=10.0, metavar="SEC",
-                   help="seconds of pad time to keep before BOOST (default 10)")
-    p.add_argument("--post-descent", type=float, default=10.0, metavar="SEC",
-                   help="seconds to keep after DESCENT (default 10)")
+    p.add_argument("--pre-boost", type=float, default=5.0, metavar="SEC",
+                   help="seconds of pad time to keep before BOOST (default 5)")
+    p.add_argument("--post-descent", type=float, default=5.0, metavar="SEC",
+                   help="seconds to keep after DESCENT (default 5)")
     p.add_argument("--no-plots", action="store_true",
                    help="print the summary only")
     args = p.parse_args()

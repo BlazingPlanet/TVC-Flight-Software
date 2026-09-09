@@ -22,16 +22,16 @@
     --no-plots          summary only
     --decimate 5        replay frame skip (default 10 = ~20 fps)
     --no-trim           plot the whole log, not just the flight window
-    --pre-boost 10      seconds of pad time to keep before BOOST (default 10)
-    --post-descent 10   seconds to keep after DESCENT (default 10)
+    --pre-boost 5      seconds of pad time to keep before BOOST (default 5)
+    --post-descent 5   seconds to keep after DESCENT (default 5)
 
 ## Plot trimming
 Logging starts at PAD, not at launch, so most of a log is pad time. A five
 minute hold followed by fifteen seconds of flight squeezes the entire powered
 portion into a few pixels.
 
-By default the plots and replay are trimmed to **10 s before BOOST through
-10 s after DESCENT**. The printed summary and any CSV always cover the whole
+By default the plots and replay are trimmed to **5 s before BOOST through
+5 s after DESCENT**. The printed summary and any CSV always cover the whole
 flight -- only the plots are cut, since flag percentages over a trimmed window
 would be misleading.
 

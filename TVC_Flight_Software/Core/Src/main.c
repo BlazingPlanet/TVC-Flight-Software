@@ -125,14 +125,14 @@ typedef enum {
 // Channel map:
 //   TIM3_CH1 = PB4 = mount "Y" axis servo
 //   TIM3_CH2 = PB5 = mount "X" axis servo
-#define SERVO_MY_TRIM   1575    // µs at gimbal neutral
+#define SERVO_MY_TRIM   1600    // µs at gimbal neutral
 #define SERVO_MY_USPD   44.4f   // µs per gimbal degree
-#define SERVO_MY_MIN    1200    // µs, inside mechanical stop at 1150
-#define SERVO_MY_MAX    1900    // µs, inside mechanical stop at 1950
+#define SERVO_MY_MIN    1175    // µs, inside mechanical stop at 1150
+#define SERVO_MY_MAX    1925    // µs, inside mechanical stop at 1950
 
-#define SERVO_MX_TRIM   1825    // µs, at gimbal neutral
+#define SERVO_MX_TRIM   1875    // µs, at gimbal neutral
 #define SERVO_MX_USPD   48.5f   // µs, per gimbal degree
-#define SERVO_MX_MIN    1475    // µs, inside mechanical stop at 1425
+#define SERVO_MX_MIN    1450    // µs, inside mechanical stop at 1475
 #define SERVO_MX_MAX    2300    // µs, inside mechanical stop at 2350
 
 #define MAX_DEFLECT     6.0f    // gimbal degrees, both axes

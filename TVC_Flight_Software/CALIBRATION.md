@@ -194,14 +194,14 @@ is assembled at flight mass.
 // Channel map:
 //   TIM3_CH1 = PB4 = mount "Y" axis servo
 //   TIM3_CH2 = PB5 = mount "X" axis servo
-#define SERVO_MY_TRIM   1575    // µs at gimbal neutral
+#define SERVO_MY_TRIM   1600    // µs at gimbal neutral
 #define SERVO_MY_USPD   44.4f   // µs per gimbal degree
-#define SERVO_MY_MIN    1200    // µs hard bound, inside mechanical stop at 1150
-#define SERVO_MY_MAX    1900    // µs hard bound, inside mechanical stop at 1950
+#define SERVO_MY_MIN    1175    // µs hard bound, inside mechanical stop at 1150
+#define SERVO_MY_MAX    1925    // µs hard bound, inside mechanical stop at 1950
 
-#define SERVO_MX_TRIM   1825
+#define SERVO_MX_TRIM   1875
 #define SERVO_MX_USPD   48.5f
-#define SERVO_MX_MIN    1475    // inside stop at 1425
+#define SERVO_MX_MIN    1450    // inside stop at 1425
 #define SERVO_MX_MAX    2300    // inside stop at 2350
 
 #define MAX_DEFLECT     6.0f    // gimbal degrees, applies to both axes

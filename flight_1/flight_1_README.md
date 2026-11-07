@@ -78,6 +78,7 @@ pad time:
 
 ## What went wrong
 
+### *Update after Flight 2: the root-cause conclusion below is SUPERSEDED. See Flight 2's README
 ### The rail was crooked
 
 The dominant problem, and the cause of nearly everything else.

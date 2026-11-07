@@ -75,7 +75,7 @@ half-record that's hard to detect.
       CALIBRATION.md         pins, servo geometry, slew rate, clock tree
       TUNING.md              plant model, moment of inertia, gain derivation
       PREFLIGHT.md           pre-flight checklist and arming procedure
-    flight_1/                log, replay, and post-flight analysis
+    flight_#/                log, replay, and post-flight analysis
     README.md
 
 ---
@@ -112,25 +112,15 @@ Full instructions in
 
 ## Status
 
-The vehicle flew, stabilized, deployed, and was recovered, but the control
-loop is not fully validated.
+On the second flight, the vehicle lifted off from the newly upgraded pad, but began a
+very steep pitch over to ~90 degrees before recovering back to straight, and then back to
+a large pitchover. the vehicle incorrectly entered COAST phase a second early because the rocket
+was flying near horizontal, triggering the accel and velocity thresholds for the COAST phase to
+begin. The parachute deployed, but due to low altitude, did not have time to unfurl and stop the 
+vehicle. Significant damage to the upper airframe and will need rebuilding.
 
-Flight 1 left a crooked rail roughly 7-10° off vertical, which saturated the
-controller before the rocket cleared the rod. The gains clamp at 4° of attitude
-error, so the loop spent ~80% of the burn pinned at full deflection, running
-bang-bang rather than PD. It held the vehicle — tilt stayed bounded and it never
-departed — but nothing about `Kp_att` or `Kd_att` was actually exercised.
-
-So the gains are **computed from a measured plant, not validated in flight.**
-Flight 2 is a straight-rail repeat with unchanged firmware, specifically so the
-loop gets to operate in its linear range and the log becomes tunable.
-
-Also unresolved: the vehicle rolled at up to 500 °/s, beginning while still on
-the rod. A two-axis gimbal cannot correct roll, and roll cross-couples the pitch
-and yaw channels through actuator lag — at 500 °/s the body rotates 25° during
-the servo's ~50 ms transit, so corrections land rotated from where they were
-computed. Traced to loose, closely-spaced rail buttons on a finless vehicle with
-no aerodynamic roll damping.
+Since there was no rail to blame for the pitch over after ignition, the leading theory is now
+vibration. See the flight 2 analysis for more details.
 
 ---
 

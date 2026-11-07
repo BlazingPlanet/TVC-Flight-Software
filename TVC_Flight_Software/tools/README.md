@@ -8,7 +8,7 @@
 5. Wait for ---FLASH DUMP END---, then close PuTTY
 
 ## Decode
-    cd C:\dev\Circuit-Testing\06_stmport\tools
+    cd C:\dev\TVC-Flight-Software\TVC_Flight_Software\tools
     python decode_flight_log.py C:\dev\capture.log
 
 ## Example Decode for Flight 3 on the Chip:

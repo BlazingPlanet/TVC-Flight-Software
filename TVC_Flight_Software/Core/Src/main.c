@@ -127,13 +127,13 @@ typedef enum {
 //   TIM3_CH2 = PB5 = mount "X" axis servo
 #define SERVO_MY_TRIM   1600    // µs at gimbal neutral
 #define SERVO_MY_USPD   44.4f   // µs per gimbal degree
-#define SERVO_MY_MIN    1175    // µs, inside mechanical stop at 1150
-#define SERVO_MY_MAX    1925    // µs, inside mechanical stop at 1950
+#define SERVO_MY_MIN    1175    // µs
+#define SERVO_MY_MAX    1925    // µs
 
 #define SERVO_MX_TRIM   1875    // µs, at gimbal neutral
 #define SERVO_MX_USPD   48.5f   // µs, per gimbal degree
-#define SERVO_MX_MIN    1450    // µs, inside mechanical stop at 1475
-#define SERVO_MX_MAX    2300    // µs, inside mechanical stop at 2350
+#define SERVO_MX_MIN    1450    // µs
+#define SERVO_MX_MAX    2300    // µs
 
 #define MAX_DEFLECT     6.0f    // gimbal degrees, both axes
 
@@ -983,8 +983,6 @@ int main(void)
       if (pass_count % 200 == 0) {   // once per second
         printf(" [timing] worst:%lu us  overruns:%lu\r\n",
                (unsigned long)(worst_cycles / 100), (unsigned long)overrun_count);
-        printf(" [baro] alt:%.2f m  T:%.2f C | kf_h:%.2f  kf_v:%.3f  kf_b:%.3f\r\n",
-               altitude, baro_temp, kf_h, kf_v, kf_b);
       }
     }   
     /* USER CODE END WHILE */

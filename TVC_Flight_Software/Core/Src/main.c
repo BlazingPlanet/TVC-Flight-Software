@@ -91,20 +91,20 @@ typedef enum {
 // Flight state machine thresholds
 // Motor is Estes F15-0 with total loaded mass of 705g
 #define LAUNCH_ACCEL_THRESH  5.0f // m/s^2, well above noise. Max accel = ~27 m/s^2 from OpenRocket sim
-#define BURNOUT_ACCEL_THRESH -2.0f // m/s^2, thrust gone
+#define BURNOUT_ACCEL_THRESH -4.0f // m/s^2, thrust gone
 #define APOGEE_VEL_THRESH -1.0f // m/s, definitively descending
 #define DEBOUNCE_PASSES 20 // 20 passes at 200 Hz = 100ms
 
 #define ARM_TILT_MAX     35.0f  // degrees from vertical
 #define ARM_GYRO_MAX     0.25f  // rad/s, any axis, must be below to enter armed state
 #define ARM_ACCEL_BAND   0.30f  // g, deviation from 1.0g must be below to enter armed state
-#define ARM_HOLD_PASSES  4000   // 20s hold time
+#define ARM_HOLD_PASSES  2000   // 10s hold time
 
 // ---- Recovery ejection (TIM3_CH3, PB0) ----
 #define EJECT_ARMED_US       2000   // latch engaged, horn clear
 #define EJECT_KNOCK_US        600   // tuned against the latch
 #define EJECT_DWELL_PASSES    100   // 500 ms at 200 Hz
-#define EJECT_BACKUP_PASSES  1500   // 7.5 s after BOOST -- set from OpenRocket
+#define EJECT_BACKUP_PASSES  1300   // 6.5 s after BOOST -- set from OpenRocket
 
 // Kalman filter parameters
 #define KF_ACCEL_NOISE 0.15f // m/s^2, accelerometer noise std dev
@@ -487,6 +487,7 @@ int main(void)
   uint32_t last_tick = HAL_GetTick();
   uint32_t pass_count = 0;
   float altitude = 0.0f;
+  float baro_temp = 0.0f;
 
   uint32_t worst_cycles = 0;    // longest tick seen, in CPU cycles
   uint32_t overrun_count = 0;   // ticks that missed their deadline
@@ -553,7 +554,7 @@ int main(void)
       if (pass_count % 8 == 0) {       // 200 Hz / 8 = 25 Hz
         int32_t rt, rp;
         BMP280ReadRaw(&rt, &rp);
-        BMP280CompensateTemp(rt);
+        baro_temp = BMP280CompensateTemp(rt);
         float press = BMP280CompensatePress(rp);
         altitude = pressure_to_altitude(press, p0);
 
@@ -982,6 +983,8 @@ int main(void)
       if (pass_count % 200 == 0) {   // once per second
         printf(" [timing] worst:%lu us  overruns:%lu\r\n",
                (unsigned long)(worst_cycles / 100), (unsigned long)overrun_count);
+        printf(" [baro] alt:%.2f m  T:%.2f C | kf_h:%.2f  kf_v:%.3f  kf_b:%.3f\r\n",
+               altitude, baro_temp, kf_h, kf_v, kf_b);
       }
     }   
     /* USER CODE END WHILE */

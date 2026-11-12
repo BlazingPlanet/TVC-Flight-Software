@@ -487,7 +487,6 @@ int main(void)
   uint32_t last_tick = HAL_GetTick();
   uint32_t pass_count = 0;
   float altitude = 0.0f;
-  float baro_temp = 0.0f;
 
   uint32_t worst_cycles = 0;    // longest tick seen, in CPU cycles
   uint32_t overrun_count = 0;   // ticks that missed their deadline
@@ -554,7 +553,7 @@ int main(void)
       if (pass_count % 8 == 0) {       // 200 Hz / 8 = 25 Hz
         int32_t rt, rp;
         BMP280ReadRaw(&rt, &rp);
-        baro_temp = BMP280CompensateTemp(rt);
+        BMP280CompensateTemp(rt);
         float press = BMP280CompensatePress(rp);
         altitude = pressure_to_altitude(press, p0);
 

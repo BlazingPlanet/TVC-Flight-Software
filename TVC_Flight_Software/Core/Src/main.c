@@ -138,8 +138,8 @@ typedef enum {
 #define MAX_DEFLECT     6.0f    // gimbal degrees, both axes
 
 // Verified (+Y on IMU points from +X servo toward center of rocket)
-#define SERVO_MY_SIGN   (-1.0f) // Verified on Bench
-#define SERVO_MX_SIGN   (+1.0f) // Verified on Bench
+#define SERVO_MY_SIGN   (+1.0f) // Verified on Bench
+#define SERVO_MX_SIGN   (-1.0f) // Verified on Bench
 
 #define SLEW_MAX_US  25   // µs of pulse change per 5 ms tick
 

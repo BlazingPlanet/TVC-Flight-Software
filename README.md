@@ -6,9 +6,8 @@ Kalman filter for the vertical channel, PD attitude control driving a two-axis
 gimbal, servo-actuated recovery deployment, and 200 Hz flight logging to SPI
 flash.
 
-**Status: flown once.** The vehicle launched, was actively stabilised through
-boost, deployed under parachute at apogee, and was recovered. See
-[Flight 1](flight_1/) for the log and analysis, including what went wrong.
+**Status: flown four times.** The gyroscopes were corrupted by engine vibration.
+Design changes are underway to address this issue. See Flight 2 Analysis.
 
 ---
 
